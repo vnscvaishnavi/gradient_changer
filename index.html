@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Favicon -->
+    <!-- <link rel="icon" href="http://freepngimg.com/download/painting/33119-6-painting-image.png" type="image/gif" sizes="16x16"> -->
+
+    <title>Gradient Background</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        html, body {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+        body {
+            background-image: linear-gradient(
+                to right top,
+                #051937,
+                #004d7a,
+                #008793,
+                #00bf72,
+                #a8eb12
+            );
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: Arial, sans-serif;
+        }
+        section {
+            text-align: center;
+            color: #fff;
+        }
+        button {
+            background: linear-gradient(135deg, #6a11cb, #2575fc);
+            border: none;
+            color: #fff;
+            padding: 12px 25px;
+            margin: 10px;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 8px;
+            transition: background 0.3s, transform 0.3s;
+        }
+        button:hover {
+            background: linear-gradient(135deg, #2575fc, #6a11cb);
+            transform: scale(1.05);
+        }
+        .copyCode {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #fff;
+            border-radius: 5px;
+            cursor: pointer;
+            display: inline-block;
+            background: rgba(0, 0, 0, 0.3);
+            color: #fff;
+            font-size: 16px;
+        }
+    </style>
+</head>
+
+<body id="gradient">
+    <section>
+        <div>
+            <button id="myButton">#051937</button>
+            <button id="myButton2">#008793</button>
+        </div>
+        <h2>Copy your code here</h2>
+        <div class="copyCode">
+            background-image: linear-gradient(to right, rgb(92, 145, 229), rgb(152, 63, 198))
+        </div>
+    </section>
+    <script>
+        let btn1 = document.getElementById("myButton");
+        let btn2 = document.getElementById("myButton2");
+        let copyDiv = document.querySelector(".copyCode");
+        let rgb1 = "rgb(92, 145, 229)";
+        let rgb2 = "rgb(152, 63, 198)";
+
+        const hexValues = () => {
+            let myHexValues = "0123456789abcdef";
+            let colors = "#";
+            for(let i=0; i<6; i++){
+                colors += myHexValues[Math.floor(Math.random()*16)];
+            }
+            return colors;
+        }
+
+        const handleButton1 = () => {
+            rgb1 = hexValues();
+            console.log(rgb1);
+            btn1.innerText = rgb1;
+            document.body.style.backgroundImage = `linear-gradient(to right, ${rgb1}, ${rgb2})`;
+            copyDiv.innerHTML = `background-image: linear-gradient(to right, ${rgb1}, ${rgb2})`;
+        };
+
+        const handleButton2 = () => {
+            rgb2 = hexValues();
+            console.log(rgb2);
+            btn2.innerText = rgb2;
+            document.body.style.backgroundImage = `linear-gradient(to right, ${rgb1}, ${rgb2})`;
+            copyDiv.innerHTML = `background-image: linear-gradient(to right, ${rgb1}, ${rgb2})`;
+        };
+
+        btn1.addEventListener("click", handleButton1);
+        btn2.addEventListener("click", handleButton2);
+        
+        copyDiv.addEventListener("click", () => {
+            navigator.clipboard.writeText(copyDiv.innerText);
+        });
+    </script>
+</body>
+
+</html>
